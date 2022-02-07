@@ -29,7 +29,6 @@ export default function AddQuestion() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  //Fix - Yup verica não pode em branco
   const QuestionSchema = yup.object().shape({
     titleQuestion: yup.string().required("Campo Obrigatório!"),
     bodyQuestion: yup.string().required("Campo Obrigatório!"),
@@ -42,7 +41,6 @@ export default function AddQuestion() {
   } = useForm({ resolver: yupResolver(QuestionSchema) });
 
   const handleClick = ({ titleQuestion, bodyQuestion }) => {
-    // console.log(titleQuestion, bodyQuestion);
     const date = getHours();
     createQuestion({
       userId: user.id,
@@ -99,7 +97,9 @@ export default function AddQuestion() {
               p="0 5px 5px"
             >
               {tagSelected.map((element) => (
-                <Button variant={"TagButton"} key={element}>{element}</Button>
+                <Button variant={"TagButton"} key={element}>
+                  {element}
+                </Button>
               ))}
             </Box>
             <AddTag tagSelected={tagSelected} setTagSelected={setTagSelected} />

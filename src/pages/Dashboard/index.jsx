@@ -45,6 +45,7 @@ export default function Dashboard() {
   const [isMobile] = useMediaQuery("(max-width: 900px)");
   const [tagSelected, setTagSelected] = useState([]);
   const [questionFilter, setQuestionFilter] = useState([]);
+
   const handleTagClick = (value) => {
     if (!tagSelected.some((e) => e === value)) {
       setTagSelected([...tagSelected, value]);
@@ -52,6 +53,7 @@ export default function Dashboard() {
       setTagSelected(tagSelected.filter((e) => e !== value));
     }
   };
+
   useEffect(() => {
     if (nameSearch && tagSelected.length > 0) {
       const filter =
@@ -87,6 +89,7 @@ export default function Dashboard() {
     } else {
       setQuestionFilter(questions);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tagSelected, nameSearch]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -160,7 +163,6 @@ export default function Dashboard() {
             w="100%"
             paddingRight={"10px"}
           >
-            
             {(questionFilter.length > 0 || nameSearch || tagSelected.length > 0
               ? questionFilter
               : questions
@@ -202,7 +204,7 @@ export default function Dashboard() {
               overflowY="scroll"
               sx={scroll}
               paddingRight={3}
-            >  
+            >
               {(questionFilter.length > 0 ||
               nameSearch ||
               tagSelected.length > 0
